@@ -17,7 +17,6 @@ const App = () => {
   };
   return (
     <div className="App">
-      <h1>Recipe App Name</h1>
       <Navbar onSelectView={handleSelectView} />
       {view === 'home' && <HomePage />}
       {view === 'search' && <RecipeSearchPage />}

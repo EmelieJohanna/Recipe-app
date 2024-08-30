@@ -1,0 +1,51 @@
+/* components/Navbar.css */
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: rgb(148, 148, 148);
+    padding: 30px 20px;
+    border-bottom: 2px solid #ddd;
+  }
+  
+  .navbar-left,
+  .navbar-right {
+    display: flex;
+    gap: 10px;
+  }
+  
+  .navbar-title {
+    flex: 1;
+    text-align: center;
+  }
+
+  .navbar-title button {
+    background-color: #707070;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    padding: 10px 15px;
+  }
+  
+  .navbar-left button,
+  .navbar-right button {
+    background-color: #707070;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    padding: 10px 15px;
+    cursor: pointer;
+    font-size: 16px;
+  }
+  
+  .navbar-left button:hover,
+  .navbar-right button:hover,
+  .navbar-title button:hover {
+    background-color: #333333;
+  }
+  
+  .navbar-title h1 {
+    margin: 0;
+    font-size: 38px;
+  }
+  
