@@ -2,6 +2,7 @@
 import React from "react";
 import "./App.css";
 import RecipeSearch from "./components/recipeSearch";
+import FetchMockData from "./mockComponents/fetchMockData";
 import UserRecipeForm from "./components/userRecipeForm";
 
 const App = () => {
@@ -11,6 +12,7 @@ const App = () => {
 
       <UserRecipeForm />
       <RecipeSearch />
+      <FetchMockData />
     </div>
   );
 };
