@@ -3,8 +3,8 @@ import React, { useState } from "react";
 import SearchForm from "./searchForm";
 import FetchRecipes from "./fetchRecipes";
 
-const RecipeSearch = () => {
-  const [query, setQuery] = useState("chicken");
+const RecipeSearch = ({ category }) => {
+  const [query, setQuery] = useState("");
   const [search, setSearch] = useState("");
 
   const updateSearch = (e) => {
@@ -24,7 +24,7 @@ const RecipeSearch = () => {
         updateSearch={updateSearch}
         getSearch={getSearch}
       />
-      <FetchRecipes query={query} />
+      <FetchRecipes query={query} category={category} />
     </div>
   );
 };
