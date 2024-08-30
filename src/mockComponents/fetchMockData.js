@@ -10,7 +10,7 @@ function FetchMockData() {
         let result = await res.json();
         console.log(result);
         setRecipes(result.recipes);
-        console.log(result.recipe);
+        console.log(result.recipes);
       } catch (error) {
         console.error("Error fetching recipes:", error);
       }
@@ -21,9 +21,11 @@ function FetchMockData() {
 
   return (
     <div>
-      {recipes.map((recipe) => (
-        <RecipeCard key={recipe.id} recipe={recipe} />
-      ))}
+      {recipes.length > 0 ? (
+        recipes.map((recipe) => <RecipeCard key={recipe.id} recipe={recipe} />)
+      ) : (
+        <p>No recipes found.</p>
+      )}
     </div>
   );
 }
