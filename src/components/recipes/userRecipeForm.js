@@ -1,5 +1,6 @@
 import { useState } from "react";
 import RecipeCard from "./recipeCard";
+import './UserRecipeForm.css';
 
 function UserRecipeForm() {
   const [recipes, setRecipes] = useState([]);
@@ -83,9 +84,9 @@ function UserRecipeForm() {
   };
 
   return (
-    <div>
+    <div className="user-recipe-form">
       <h3>New Recipe</h3>
-      {error && <p style={{ color: "red" }}>{error}</p>}
+      {error && <p className="error-message">{error}</p>}
       <form onSubmit={handleAddRecipe} id="recipeForm">
         <input
           type="text"
@@ -130,7 +131,7 @@ function UserRecipeForm() {
         <button type="submit">Add Recipe</button>
       </form>
 
-      <div id="recipesContainer">
+      <div className="recipe-list-container" id="recipesContainer">
         {recipes.map((recipe) =>
           recipe.isEditing ? (
             <div key={recipe.id}>
