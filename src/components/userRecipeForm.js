@@ -7,7 +7,7 @@ const UserRecipeForm = ({ addRecipe }) => {
   const [image, setImage] = useState(null);
 
   // Function to handle form submission
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
 
     // Check if all fields are filled
@@ -20,32 +20,34 @@ const UserRecipeForm = ({ addRecipe }) => {
       return;
     }
 
-    // Handle image upload
-    if (image) {
-      const formData = new FormData();
-      formData.append("recipe[title]", title);
-      formData.append("recipe[ingredients]", ingredients);
-      formData.append("recipe[instructions]", instructions);
-      formData.append("recipe[image]", image);
+    try {
+      // Create a JSON object with form data
+      const formData = {
+        title,
+        ingredients,
+        instructions,
+        image: image ? URL.createObjectURL(image) : null,
+      };
 
-      fetch("/api/create-recipe", {
+      // Send POST request with JSON body
+      const response = await fetch("/api/create-recipe", {
         method: "POST",
-        body: formData,
-      })
-        .then((response) => response.json())
-        .then((data) => {
-          console.log("Recipe created:", data);
-          // Reset form after successful submission
-          setTitle("");
-          setIngredients("");
-          setInstructions("");
-          setImage(null);
-        })
-        .catch((error) => {
-          console.error("Error:", error);
-        });
-    } else {
-      alert("Please select an image to upload.");
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(formData),
+      });
+
+      const data = await response.json();
+      console.log("Recipe created:", data);
+
+      // Reset form after successful submission
+      setTitle("");
+      setIngredients("");
+      setInstructions("");
+      setImage(null);
+    } catch (error) {
+      console.error("Error:", error);
     }
   };
 
@@ -59,15 +61,19 @@ const UserRecipeForm = ({ addRecipe }) => {
       try {
         if (!image) return;
 
-        const formData = new FormData();
-        formData.append("recipe[title]", title);
-        formData.append("recipe[ingredients]", ingredients);
-        formData.append("recipe[instructions]", instructions);
-        formData.append("recipe[image]", image);
+        const formData = {
+          title,
+          ingredients,
+          instructions,
+          image: URL.createObjectURL(image),
+        };
 
         const response = await fetch("/api/create-recipe", {
           method: "POST",
-          body: formData,
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(formData),
         });
 
         const data = await response.json();
