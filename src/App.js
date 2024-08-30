@@ -1,6 +1,7 @@
 // App.js
 import React, { useState } from "react";
 import "./App.css";
+//import RecipeSearch from "./components/recipeSearch";
 import FetchMockData from "./mockComponents/fetchMockData";
 import UserRecipeForm from "./components/recipes/userRecipeForm";
 import Navbar from "./components/Navbar";
@@ -26,3 +27,4 @@ const App = () => {
 };
 
 export default App;
+
