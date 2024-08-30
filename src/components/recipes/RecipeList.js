@@ -1,9 +1,10 @@
 // components/RecipeList.js
 import React from "react";
 import RecipeCard from "./recipeCard";
+import './RecipeList.css';
 
 const RecipeList = ({ recipes }) => (
-  <div className="recipes">
+  <div className="recipe-list">
     {recipes.map((recipe) => (
       <RecipeCard
         key={recipe.recipe.label}

@@ -31,6 +31,7 @@ const Navbar = ({ onSelectView, onSelectCategory }) => {
       <div className="navbar-right">
       <button onClick={() => handleViewChange("userRecipe")}>Submit Recipe</button>
       <button onClick={() => handleViewChange("search")}>Recipe Search</button>
+      <button onClick={() => onSelectView('mockData')}>Mock Data</button> {/* New Tab */}
       </div>
       {onSelectCategory && (
         <div>

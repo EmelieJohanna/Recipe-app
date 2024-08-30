@@ -3,9 +3,9 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    background-color: rgb(148, 148, 148);
+    background-color: #FFF8DC;
     padding: 30px 20px;
-    border-bottom: 2px solid #ddd;
+    border-bottom: 2px solid #FFA500;
   }
   
   .navbar-left,
@@ -20,7 +20,7 @@
   }
 
   .navbar-title button {
-    background-color: #707070;
+    background-color: #FFA500;
     color: white;
     border: none;
     border-radius: 5px;
@@ -29,7 +29,7 @@
   
   .navbar-left button,
   .navbar-right button {
-    background-color: #707070;
+    background-color: #FFA500;
     color: white;
     border: none;
     border-radius: 5px;

@@ -21,6 +21,7 @@ const App = () => {
       {view === 'home' && <HomePage />}
       {view === 'search' && <RecipeSearchPage />}
       {view === 'userRecipe' && <UserRecipeForm />}
+      {view === 'mockData' && <FetchMockData />}
     </div>
   );
 };
