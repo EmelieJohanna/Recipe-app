@@ -1,0 +1,38 @@
+/* components/SearchForm.css */
+.search-form {
+    display: flex;
+    align-items: center;
+    background-color: #FFF8DC;
+    padding: 15px;
+    border-radius: 5px;
+    border: 2px solid #FFA500;
+    margin-bottom: 20px; /* Adds space below the search form */
+    max-width: 600px; /* Limits the width */
+  margin: 0 auto; /* Centers the form */
+  }
+  
+  .search-bar {
+    flex: 1;
+    padding: 10px;
+    border: 1px solid #FFA500;
+    border-radius: 5px;
+    font-size: 16px;
+    color: #333333;
+  }
+  
+  .search-button {
+    background-color: #FFA500;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    padding: 10px 20px;
+    cursor: pointer;
+    font-size: 16px;
+    margin-left: 10px;
+    transition: background-color 0.3s ease;
+  }
+  
+  .search-button:hover {
+    background-color: #333333;
+  }
+  

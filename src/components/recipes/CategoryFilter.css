@@ -1,0 +1,38 @@
+/* components/CategoryFilter.css */
+.category-filter {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 15px;
+    padding: 20px;
+    background-color: #FFF8DC;
+    border-bottom: 2px solid #FFA500;
+  }
+  
+  .filter-group {
+    flex: 1;
+    min-width: 150px;
+  }
+  
+  .filter-group h3 {
+    font-size: 20px;
+    margin-bottom: 10px;
+    color: #333333;
+  }
+  
+  .filter-button {
+    background-color: #FFA500;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    padding: 10px 15px;
+    cursor: pointer;
+    font-size: 16px;
+    margin-right: 10px;
+    transition: background-color 0.3s ease;
+  }
+  
+  .filter-button.active,
+  .filter-button:hover {
+    background-color: #333333;
+  }
+  

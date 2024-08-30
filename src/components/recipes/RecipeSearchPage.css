@@ -1,0 +1,25 @@
+/* components/RecipeSearchPage.css */
+.recipe-search-page {
+    padding: 20px;
+  }
+  
+  .search-form {
+    margin-bottom: 20px;
+  }
+  
+  .category-filter {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+  }
+  
+  .filter-group {
+    margin-right: 20px;
+  }
+  
+  .filter-group button {
+    margin: 5px;
+    padding: 5px 10px;
+    cursor: pointer;
+  }
+  

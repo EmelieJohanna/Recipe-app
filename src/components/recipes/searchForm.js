@@ -1,5 +1,6 @@
 // components/SearchForm.js
 import React from "react";
+import "./SearchForm.css"
 
 const SearchForm = ({ query, updateSearch, getSearch }) => (
   <form className="search-form" onSubmit={getSearch}>

@@ -2,17 +2,23 @@
 import React, { useEffect, useState } from "react";
 import RecipeList from "./RecipeList";
 
-const FetchRecipes = ({ query, category }) => {
+const FetchRecipes = ({ query, filters }) => {
   const [recipes, setRecipes] = useState([]);
   const [error, setError] = useState(null);
 
   useEffect(() => {
     const fetchRecipes = async () => {
       try {
-        const APP_ID = "3aed539c";
-        const APP_KEY = "6dfab6fbb48a7afb4e107d3933a8418d";
-        const healthLabel = category ? `&health=${encodeURIComponent(category.toLowerCase().replace(' ', '-'))}` : '';
-        const url = `https://api.edamam.com/search?q=${query}&app_id=${APP_ID}&app_key=${APP_KEY}`
+        const APP_ID = "4f35a1f4";
+        const APP_KEY = "1e7689dd2017dd649e7f2620b86cd69b";
+
+        const filterParams = Object.entries(filters)
+          .map(([key, value]) => value ? `${key}=${value}` : '')
+          .filter(param => param)
+          .join('&');
+
+        const url = `https://api.edamam.com/search?q=${query}&app_id=${APP_ID}&app_key=${APP_KEY}&${filterParams}`
+        console.log('API Request URL:', url);
         const response = await fetch(url);
         if (!response.ok) {
           throw new Error("Failed to fetch recipes");
@@ -25,7 +31,7 @@ const FetchRecipes = ({ query, category }) => {
     };
 
     fetchRecipes();
-  }, [query, category]);
+  }, [query, filters]);
 
   if (error) {
     return <div>Error: {error}</div>;
