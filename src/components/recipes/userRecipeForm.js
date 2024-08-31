@@ -1,84 +1,73 @@
-import { useState } from "react";
+import React, { useState } from "react";
 import RecipeCard from "./recipeCard";
-import './UserRecipeForm.css';
+import "./UserRecipeForm.css";
 
 function UserRecipeForm() {
   const [recipes, setRecipes] = useState([]);
   const [newRecipe, setNewRecipe] = useState({
     title: "",
-    time: "",
     ingredients: [],
-    instructions: "",
-    imgSrc: "",
+    image: "",
+    calories: "",
   });
   const [error, setError] = useState("");
 
+  // Handle input changes for text fields
   const handleInputChange = (e) => {
     const { name, value } = e.target;
     setNewRecipe({ ...newRecipe, [name]: value });
   };
 
+  // Handle input changes for ingredients
   const handleIngredientsChange = (e) => {
-    const ingredientsArray = e.target.value
-      .split(",")
-      .map((ingredient) => ingredient.trim());
-    setNewRecipe({ ...newRecipe, ingredients: ingredientsArray });
+    setNewRecipe({ ...newRecipe, ingredients: e.target.value.split(", ") });
   };
 
+  // Handle image file input
   const handleImageChange = (e) => {
-    const file = e.target.files[0];
-    const reader = new FileReader();
+    // Get the first file from the file input element
 
+    const file = e.target.files[0];
+    // Create a new FileReader instance to read the file
+
+    const reader = new FileReader();
+    //when the file reading is completed..
     reader.onloadend = () => {
-      setNewRecipe({ ...newRecipe, imgSrc: reader.result });
+      setNewRecipe({ ...newRecipe, image: reader.result });
     };
+    // If a file is selected, read it as a Data URL (base64-encoded string)
 
     if (file) {
       reader.readAsDataURL(file);
     }
   };
 
+  // Basic validation
+  const validateForm = () => {
+    if (!newRecipe.title || !newRecipe.ingredients.length) {
+      setError("Please fill out all required fields.");
+      return false;
+    }
+    return true;
+  };
+
+  // Handle adding a new recipe
   const handleAddRecipe = (e) => {
     e.preventDefault();
+    if (!validateForm()) return;
 
-    // Basic validation
-    if (
-      !newRecipe.title ||
-      !newRecipe.ingredients.length ||
-      !newRecipe.instructions
-    ) {
-      setError("Please fill out all required fields.");
-      return;
-    }
-
+    // Add new recipe to the list
     setRecipes([...recipes, { ...newRecipe, id: Date.now() }]);
     setNewRecipe({
       title: "",
-      time: "",
       ingredients: [],
-      instructions: "",
-      imgSrc: "",
+      image: "",
+      calories: "", // Reset
     });
     setError(""); // Clear any previous error messages
   };
 
-  const handleEditRecipe = (id) => {
-    const recipe = recipes.find((r) => r.id === id);
-    const updatedRecipe = {
-      ...recipe,
-      isEditing: true,
-    };
-    setRecipes(recipes.map((r) => (r.id === id ? updatedRecipe : r)));
-  };
-
-  const handleSaveRecipe = (id, updatedRecipe) => {
-    setRecipes(
-      recipes.map((r) =>
-        r.id === id ? { ...updatedRecipe, id, isEditing: false } : r
-      )
-    );
-  };
-
+  // Handle deleting a recipe
   const handleDeleteRecipe = (id) => {
     setRecipes(recipes.filter((r) => r.id !== id));
   };
@@ -97,29 +86,23 @@ function UserRecipeForm() {
           placeholder="Recipe Title"
           required
         />
-        <input
-          type="text"
-          id="time"
-          name="time"
-          value={newRecipe.time}
-          onChange={handleInputChange}
-          placeholder="Cooking Time"
-        />
+
         <textarea
           id="ingredients"
           name="ingredients"
           value={newRecipe.ingredients.join(", ")}
           onChange={handleIngredientsChange}
-          placeholder="Ingredients (comma separated)"
+          placeholder="Ingredients"
           required
         />
-        <textarea
-          id="instructions"
-          name="instructions"
-          value={newRecipe.instructions}
+
+        <input
+          type="text"
+          id="calories"
+          name="calories"
+          value={newRecipe.calories}
           onChange={handleInputChange}
-          placeholder="Instructions"
-          required
+          placeholder="Calories"
         />
         <input
           type="file"
@@ -130,74 +113,17 @@ function UserRecipeForm() {
         />
         <button type="submit">Add Recipe</button>
       </form>
-
-      <div className="recipe-list-container" id="recipesContainer">
-        {recipes.map((recipe) =>
-          recipe.isEditing ? (
-            <div key={recipe.id}>
-              <input
-                type="text"
-                value={recipe.title}
-                onChange={(e) =>
-                  handleSaveRecipe(recipe.id, {
-                    ...recipe,
-                    title: e.target.value,
-                  })
-                }
-              />
-              <input
-                type="text"
-                value={recipe.time}
-                onChange={(e) =>
-                  handleSaveRecipe(recipe.id, {
-                    ...recipe,
-                    time: e.target.value,
-                  })
-                }
-              />
-              <textarea
-                value={recipe.ingredients.join(", ")}
-                onChange={(e) =>
-                  handleSaveRecipe(recipe.id, {
-                    ...recipe,
-                    ingredients: e.target.value
-                      .split(",")
-                      .map((ingredient) => ingredient.trim()),
-                  })
-                }
-              />
-              <textarea
-                value={recipe.instructions}
-                onChange={(e) =>
-                  handleSaveRecipe(recipe.id, {
-                    ...recipe,
-                    instructions: e.target.value,
-                  })
-                }
-              />
-              <button
-                onClick={() => handleSaveRecipe(recipe.id, { ...recipe })}
-              >
-                Save
-              </button>
-            </div>
-          ) : (
-            <RecipeCard
-              key={recipe.id}
-              imgSrc={recipe.imgSrc || "/img/Recept1.png"} // Use the uploaded image if available, otherwise use a default image
-              imgAlt="image of dish"
-              title={recipe.title}
-              time={recipe.time}
-              ingredients={recipe.ingredients}
-              instructions={recipe.instructions}
-              onEdit={() => handleEditRecipe(recipe.id)}
-              onDelete={() => handleDeleteRecipe(recipe.id)}
-              onSave={(updatedRecipe) =>
-                handleSaveRecipe(recipe.id, updatedRecipe)
-              }
-            />
-          )
-        )}
+      <div className="recipe-list">
+        {recipes.map((recipe) => (
+          <RecipeCard
+            key={recipe.id}
+            image={recipe.image || "/food.jpg"}
+            title={recipe.title}
+            calories={recipe.calories}
+            ingredients={recipe.ingredients}
+            onDelete={() => handleDeleteRecipe(recipe.id)}
+          />
+        ))}
       </div>
     </div>
   );
