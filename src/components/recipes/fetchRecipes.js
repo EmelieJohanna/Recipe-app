@@ -53,6 +53,13 @@ const FetchRecipes = ({ query, filters, useMockData = false, onDelete }) => {
     return <div>Loading...</div>;
   }
 
+  const handleDelete = (title) => {
+    setRecipes((prevRecipes) =>
+      prevRecipes.filter((recipe) => recipe.recipe.label !== title)
+    );
+    if (onDelete) onDelete(title);
+  };
+
   function removeComplexDuplicates(data) {
     const unique = [];
     const identifiers = new Set();
@@ -68,7 +75,7 @@ const FetchRecipes = ({ query, filters, useMockData = false, onDelete }) => {
     return unique;
   }
 
-  return <RecipeList recipes={recipes} onDelete={onDelete} />;
+  return <RecipeList recipes={recipes} onDelete={handleDelete} />;
 };
 
 export default FetchRecipes;

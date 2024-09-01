@@ -1,4 +1,3 @@
-// components/recipes/HomePage.js
 import React, { useState } from "react";
 import SearchForm from "./SearchForm";
 import CategoryFilter from "./CategoryFilter";
