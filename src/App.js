@@ -4,7 +4,7 @@ import "./App.css";
 import FetchMockData from "./mockComponents/fetchMockData";
 import UserRecipeForm from "./components/recipes/userRecipeForm";
 import Navbar from "./components/Navbar";
-import RecipeSearchPage from './components/recipes/RecipeSearchPage';
+
 import HomePage from './components/recipes/HomePage';
 
 
@@ -19,7 +19,6 @@ const App = () => {
     <div className="App">
       <Navbar onSelectView={handleSelectView} />
       {view === 'home' && <HomePage />}
-      {view === 'search' && <RecipeSearchPage />}
       {view === 'userRecipe' && <UserRecipeForm />}
       {view === 'mockData' && <FetchMockData />}
     </div>
