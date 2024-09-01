@@ -10,8 +10,8 @@ const RecipeCard = ({ title, calories, image, ingredients, onDelete }) => {
       <div className="recipe-card-ingredients">
         <h2>Ingredients:</h2>
         <ul>
-          {ingredients.map((ingredient) => (
-            <li>{ingredient.text}</li>
+          {ingredients.map((ingredient, index) => (
+            <li key={`${ingredient.foodId}-${index}`}>{ingredient.text}</li>
           ))}
         </ul>
       </div>

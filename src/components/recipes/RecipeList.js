@@ -7,7 +7,7 @@ const RecipeList = ({ recipes, onDelete }) => (
   <div className="recipe-list">
     {recipes.map((recipe) => (
       <RecipeCard
-        key={recipe.recipe.label}
+        key={recipe.recipe.uri}
         title={recipe.recipe.label}
         calories={recipe.recipe.calories}
         image={recipe.recipe.image}

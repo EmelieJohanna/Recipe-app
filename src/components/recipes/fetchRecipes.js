@@ -1,8 +1,7 @@
-// components/FetchRecipes.js
 import React, { useEffect, useState } from "react";
 import RecipeList from "./RecipeList";
 
-const FetchRecipes = ({ query, filters, useMockData = false }) => {
+const FetchRecipes = ({ query, filters, useMockData = false, onDelete }) => {
   const [recipes, setRecipes] = useState([]);
   const [error, setError] = useState(null);
 
@@ -34,9 +33,10 @@ const FetchRecipes = ({ query, filters, useMockData = false }) => {
           if (!response.ok) {
             throw new Error("Failed to fetch recipes");
           }
-          const data = await response.json();
-          setRecipes(data.hits);
+          data = await response.json();
         }
+        const uniqueRecipes = removeComplexDuplicates(data.hits);
+        setRecipes(uniqueRecipes);
       } catch (err) {
         setError(err.message);
       }
@@ -53,7 +53,22 @@ const FetchRecipes = ({ query, filters, useMockData = false }) => {
     return <div>Loading...</div>;
   }
 
-  return <RecipeList recipes={recipes} />;
+  function removeComplexDuplicates(data) {
+    const unique = [];
+    const identifiers = new Set();
+
+    for (const item of data) {
+      const identifier = `${item.recipe.label}-${item.recipe.calories}`;
+      if (!identifiers.has(identifier)) {
+        unique.push(item);
+        identifiers.add(identifier);
+      }
+    }
+
+    return unique;
+  }
+
+  return <RecipeList recipes={recipes} onDelete={onDelete} />;
 };
 
 export default FetchRecipes;
