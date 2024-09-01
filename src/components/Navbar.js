@@ -1,6 +1,6 @@
 // components/Navbar.js
-import React from 'react';
-import './Navbar.css'; 
+import React from "react";
+import "./Navbar.css";
 
 const Navbar = ({ onSelectView, onSelectCategory }) => {
   const categories = ["Gluten-Free", "Vegetarian", "Vegan"];
@@ -18,20 +18,23 @@ const Navbar = ({ onSelectView, onSelectCategory }) => {
 
   return (
     <nav className="navbar">
-        <div className="navbar-left">
-        <button onClick={() => onSelectView('home')}>All Recipes</button>
-        <button onClick={() => onSelectView('search')}>Gluten-Free</button>
-        <button onClick={() => onSelectView('search')}>Vegan</button>
-        </div>
-        <div className="navbar-title">
-        <button onClick={() => onSelectView('home')}><h1>The Little Cook Book</h1></button>
-
-        
+      <div className="navbar-left">
+        <button onClick={() => onSelectView("home")}>All Recipes</button>
+        <button onClick={() => onSelectView("search")}>Gluten-Free</button>
+        <button onClick={() => onSelectView("search")}>Vegan</button>
+      </div>
+      <div className="navbar-title">
+        <button onClick={() => onSelectView("home")}>
+          <h1>The Little Cook Book</h1>
+        </button>
       </div>
       <div className="navbar-right">
-      <button onClick={() => handleViewChange("userRecipe")}>Submit Recipe</button>
-      <button onClick={() => handleViewChange("search")}>Recipe Search</button>
-      <button onClick={() => onSelectView('mockData')}>Mock Data</button> {/* New Tab */}
+        <button onClick={() => handleViewChange("userRecipe")}>
+          Submit Recipe
+        </button>
+        {/* <button onClick={() => handleViewChange("search")}>Recipe Search</button> */}
+        <button onClick={() => onSelectView("mockData")}>Mock Data</button>{" "}
+        {/* New Tab */}
       </div>
       {onSelectCategory && (
         <div>

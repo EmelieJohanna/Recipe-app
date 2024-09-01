@@ -2,7 +2,7 @@
 import React, { useEffect, useState } from "react";
 import RecipeList from "./RecipeList";
 
-const FetchRecipes = ({ query, filters, useMockData = true }) => {
+const FetchRecipes = ({ query, filters, useMockData = false }) => {
   const [recipes, setRecipes] = useState([]);
   const [error, setError] = useState(null);
 
@@ -35,8 +35,8 @@ const FetchRecipes = ({ query, filters, useMockData = true }) => {
             throw new Error("Failed to fetch recipes");
           }
           const data = await response.json();
+          setRecipes(data.hits);
         }
-        setRecipes(data.hits);
       } catch (err) {
         setError(err.message);
       }
