@@ -11,13 +11,13 @@ const FetchRecipes = ({ query, filters }) => {
       try {
         const APP_ID = "4f35a1f4";
         const APP_KEY = "1e7689dd2017dd649e7f2620b86cd69b";
+        const searchQuery = query.trim() === '' ? 'all' : query;
 
         const filterParams = Object.entries(filters)
           .map(([key, value]) => value ? `${key}=${value}` : '')
           .filter(param => param)
           .join('&');
-
-        const url = `https://api.edamam.com/search?q=${query}&app_id=${APP_ID}&app_key=${APP_KEY}&${filterParams}`
+        const url = `https://api.edamam.com/search?q=${searchQuery}&app_id=${APP_ID}&app_key=${APP_KEY}&${filterParams}`
         console.log('API Request URL:', url);
         const response = await fetch(url);
         if (!response.ok) {

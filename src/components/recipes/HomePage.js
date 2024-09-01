@@ -1,41 +1,42 @@
 // components/recipes/HomePage.js
 import React, { useEffect, useState } from 'react';
 import RecipeList from './RecipeList';
+import SearchForm from './SearchForm';
+import CategoryFilter from './CategoryFilter';
+import FetchRecipes from './FetchRecipes';
 
 const HomePage = () => {
-  const [recipes, setRecipes] = useState([]);
-  const [error, setError] = useState(null);
+  const defaultQuery = '';
+  const [query, setQuery] = useState(''); // User search query
+  const [filters, setFilters] = useState({
+    mealType: '',
+    dishType: '',
+    health: '',
+  }); // User-selected filters
 
-  useEffect(() => {
-    const fetchRecipes = async () => {
-      try {
-        const APP_ID = '3aed539c';
-        const APP_KEY = '6dfab6fbb48a7afb4e107d3933a8418d';
-        const response = await fetch(
-          `https://api.edamam.com/search?q=all&app_id=${APP_ID}&app_key=${APP_KEY}`
-        );
-        if (!response.ok) {
-          throw new Error('Failed to fetch recipes');
-        }
-        const data = await response.json();
-        setRecipes(data.hits);
-      } catch (err) {
-        setError(err.message);
-      }
-    };
+ // Handling input changes and form submission
+ const handleSelectCategory = (filterType, value) => {
+  setFilters((prevFilters) => ({
+    ...prevFilters,
+    [filterType]: prevFilters[filterType] === value ? '' : value,
+  }));
+};
 
-    fetchRecipes();
-  }, []);
+const updateSearch = (e) => {
+  setQuery(e.target.value);
+};
 
-  if (error) {
-    return <div>Error: {error}</div>;
-  }
+const getSearch = (e) => {
+  e.preventDefault();
+};
 
-  if (recipes.length === 0) {
-    return <div>Loading...</div>;
-  }
-
-  return <RecipeList recipes={recipes} />;
+return (
+  <div>
+    <SearchForm query={query} updateSearch={updateSearch} getSearch={getSearch} />
+    <CategoryFilter filters={filters} onSelectCategory={handleSelectCategory} />
+    <FetchRecipes query={query} filters={filters} />
+  </div>
+);
 };
 
 export default HomePage;

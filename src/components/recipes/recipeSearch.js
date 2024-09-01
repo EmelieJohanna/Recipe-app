@@ -1,7 +1,7 @@
 // components/RecipeSearch.js
 import React, { useState } from "react";
-import SearchForm from "./searchForm";
-import FetchRecipes from "./fetchRecipes";
+import SearchForm from "./SearchForm";
+import FetchRecipes from "./FetchRecipes";
 
 const RecipeSearch = ({ query, filters }) => {
   return (

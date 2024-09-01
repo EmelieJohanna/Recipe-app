@@ -1,0 +1,59 @@
+/* components/FetchMockData.css */
+.recipe-list-2 {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); /* Flexible columns for better balance */
+    gap: 20px; /* Space between grid items */
+    padding: 20px; /* Padding around the grid */
+    justify-content: center; /* Center the grid items if fewer items than columns */
+  }
+  
+  /* RecipeCard styling */
+  .recipe-card-2 {
+    background-color: #FFF8DC; /* Light orange background */
+    border: 1px solid #FFA500; /* Orange border */
+    border-radius: 10px; /* Rounded corners */
+    padding: 15px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+    transition: transform 0.3s ease, box-shadow 0.3s ease; /* Smooth hover transition */
+    max-width: 100%; /* Ensure cards take up full width of their grid cell */
+    display: flex;
+    flex-direction: column; /* Stacks content vertically on small screens */
+    justify-content: space-between;
+  }
+
+  .recipe-card-2:hover {
+    transform: translateY(-5px); /* Lift the card on hover */
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2); /* Darker shadow on hover */
+  }
+  
+  .recipe-card-2 img {
+    width: 100%; /* Ensure images are responsive */
+    height: 200px;
+    object-fit: cover;
+    border-radius: 10px;
+    margin-bottom: 15px; /* Add spacing between image and content */
+  }
+
+  .first-half, .second-half {
+    width: 100%; /* Ensure they stack in smaller screens */
+  }
+
+  .first-half h2 {
+    font-size: 24px;
+    color: #333; /* Darker text color for readability */
+  }
+
+  .second-half ul, .second-half ol {
+    list-style: none; /* Remove default list styles */
+    padding-left: 0;
+  }
+
+  /* Responsive behavior */
+  @media (min-width: 768px) {
+    .recipe-card-2 {
+      flex-direction: row; /* Row layout for larger screens */
+    }
+    .first-half, .second-half {
+      width: 50%; /* Split the width between the two halves */
+    }
+  }
