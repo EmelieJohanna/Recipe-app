@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import RecipeCard from "./recipeCard";
+import RecipeCard from "./RecipeCard";
 import "./UserRecipeForm.css";
 
 function UserRecipeForm() {

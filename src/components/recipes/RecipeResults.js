@@ -1,4 +1,5 @@
 // components/RecipeSearch.js
+import React from "react";
 import FetchRecipes from "./FetchRecipes";
 
 const RecipeResults = ({ query, filters }) => {
