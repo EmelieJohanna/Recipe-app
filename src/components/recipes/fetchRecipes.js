@@ -2,36 +2,49 @@
 import React, { useEffect, useState } from "react";
 import RecipeList from "./RecipeList";
 
-const FetchRecipes = ({ query, filters }) => {
+const FetchRecipes = ({ query, filters, useMockData = true }) => {
   const [recipes, setRecipes] = useState([]);
   const [error, setError] = useState(null);
 
   useEffect(() => {
     const fetchRecipes = async () => {
       try {
-        const APP_ID = "4f35a1f4";
-        const APP_KEY = "1e7689dd2017dd649e7f2620b86cd69b";
+        let data;
+        if (useMockData) {
+          // Fetch from mock data
+          const response = await fetch("/recipes.json");
+          if (!response.ok) {
+            throw new Error("Failed to fetch mock recipes");
+          }
+          data = await response.json();
+          console.log(data);
+          setRecipes(data.hits);
+        } else {
+          const APP_ID = "ad781b5d";
+          const APP_KEY = "48f43889e89875afdcb8aea24d944c27";
 
-        const filterParams = Object.entries(filters)
-          .map(([key, value]) => value ? `${key}=${value}` : '')
-          .filter(param => param)
-          .join('&');
+          const filterParams = Object.entries(filters)
+            .map(([key, value]) => (value ? `${key}=${value}` : ""))
+            .filter((param) => param)
+            .join("&");
 
-        const url = `https://api.edamam.com/search?q=${query}&app_id=${APP_ID}&app_key=${APP_KEY}&${filterParams}`
-        console.log('API Request URL:', url);
-        const response = await fetch(url);
-        if (!response.ok) {
-          throw new Error("Failed to fetch recipes");
+          const url = `https://api.edamam.com/search?q=${query}&app_id=${APP_ID}&app_key=${APP_KEY}&${filterParams}`;
+          console.log("API Request URL:", url);
+          const response = await fetch(url);
+          if (!response.ok) {
+            throw new Error("Failed to fetch recipes");
+          }
+          data = await response.json();
+          console.log("API response data:", data);
+          setRecipes(data.hits);
         }
-        const data = await response.json();
-        setRecipes(data.hits);
       } catch (err) {
         setError(err.message);
       }
     };
 
     fetchRecipes();
-  }, [query, filters]);
+  }, [query, filters, useMockData]);
 
   if (error) {
     return <div>Error: {error}</div>;
