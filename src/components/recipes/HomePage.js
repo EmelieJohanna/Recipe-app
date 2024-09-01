@@ -1,9 +1,8 @@
 // components/recipes/HomePage.js
-import React, { useEffect, useState } from "react";
-import RecipeList from "./RecipeList";
-import SearchForm from "./searchForm";
+import React, { useState } from "react";
+import SearchForm from "./SearchForm";
 import CategoryFilter from "./CategoryFilter";
-import FetchRecipes from "./fetchRecipes";
+import FetchRecipes from "./FetchRecipes";
 
 const HomePage = () => {
   const defaultQuery = "";
