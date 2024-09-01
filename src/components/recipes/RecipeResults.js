@@ -1,9 +1,7 @@
 // components/RecipeSearch.js
-import React, { useState } from "react";
-import SearchForm from "./SearchForm";
 import FetchRecipes from "./FetchRecipes";
 
-const RecipeSearch = ({ query, filters }) => {
+const RecipeResults = ({ query, filters }) => {
   return (
     <div>
       <FetchRecipes query={query} filters={filters} />
@@ -11,4 +9,4 @@ const RecipeSearch = ({ query, filters }) => {
   );
 };
 
-export default RecipeSearch;
+export default RecipeResults;
