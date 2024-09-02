@@ -1,7 +1,7 @@
 // App.js
 import React, { useState } from "react";
 import "./App.css";
-import FetchMockData from "./mockComponents/fetchMockData";
+// import FetchMockData from "./mockComponents/fetchMockData";
 import UserRecipeForm from "./components/recipes/UserRecipeForm";
 import Navbar from "./components/Navbar";
 
@@ -19,7 +19,7 @@ const App = () => {
       <Navbar onSelectView={handleSelectView} />
       {view === "home" && <HomePage />}
       {view === "userRecipe" && <UserRecipeForm />}
-      {view === "mockData" && <FetchMockData />}
+      {/* {view === "mockData" && <FetchMockData />} */}
     </div>
   );
 };
