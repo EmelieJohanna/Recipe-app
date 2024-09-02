@@ -115,8 +115,6 @@ const FetchRecipes = ({ query, filters, useMockData = false, onDelete }) => {
     return unique;
   }
 
-  // Merge API recipes with local storage edits
-
   if (error) {
     return <div>Error: {error}</div>;
   }

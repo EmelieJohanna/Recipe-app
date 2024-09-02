@@ -3,6 +3,12 @@ import SearchForm from "./SearchForm";
 import CategoryFilter from "./CategoryFilter";
 import FetchRecipes from "./FetchRecipes";
 
+// Parent component! 
+// Handles State and Logic for the whole page
+
+// State managment: holds "query" state for search input.
+// Holds filters object in state
+
 const HomePage = () => {
   const defaultQuery = "";
   const [query, setQuery] = useState(""); // User search query
@@ -12,7 +18,7 @@ const HomePage = () => {
     health: "",
   }); // User-selected filters
 
-  // Handling input changes and form submission
+  // Handling input changes 
   const handleSelectCategory = (filterType, value) => {
     setFilters((prevFilters) => {
     const updatedFilters = {
