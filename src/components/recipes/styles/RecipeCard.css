@@ -105,6 +105,7 @@
 
 .recipe-card-rating {
   margin: 10px 0;
+  font-weight: bolder;
 }
 
 .star {
@@ -161,4 +162,8 @@
   cursor: pointer;
   transition: background-color 0.3s ease;
   margin-right: 5px;
+}
+
+.edit-btn:hover {
+  background-color: #d9363e;
 }
