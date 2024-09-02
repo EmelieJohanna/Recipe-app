@@ -2,11 +2,10 @@
 import React, { useState } from "react";
 import "./App.css";
 import FetchMockData from "./mockComponents/fetchMockData";
-import UserRecipeForm from "./components/recipes/userRecipeForm";
+import UserRecipeForm from "./components/recipes/UserRecipeForm";
 import Navbar from "./components/Navbar";
 
-import HomePage from './components/recipes/HomePage';
-
+import HomePage from "./components/recipes/HomePage";
 
 const App = () => {
   const [view, setView] = useState("home");
@@ -18,9 +17,9 @@ const App = () => {
   return (
     <div className="App">
       <Navbar onSelectView={handleSelectView} />
-      {view === 'home' && <HomePage />}
-      {view === 'userRecipe' && <UserRecipeForm />}
-      {view === 'mockData' && <FetchMockData />}
+      {view === "home" && <HomePage />}
+      {view === "userRecipe" && <UserRecipeForm />}
+      {view === "mockData" && <FetchMockData />}
     </div>
   );
 };

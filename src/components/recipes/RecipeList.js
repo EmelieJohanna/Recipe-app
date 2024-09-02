@@ -1,9 +1,9 @@
 // components/RecipeList.js
 import React from "react";
-import RecipeCard from "./recipeCard";
+import RecipeCard from "./RecipeCard";
 import "./RecipeList.css";
 
-const RecipeList = ({ recipes, onDelete }) => (
+const RecipeList = ({ recipes, onDelete, onRate }) => (
   <div className="recipe-list">
     {recipes.map((recipe) => (
       <RecipeCard
@@ -13,6 +13,7 @@ const RecipeList = ({ recipes, onDelete }) => (
         image={recipe.recipe.image}
         ingredients={recipe.recipe.ingredients}
         onDelete={onDelete}
+        onRate={onRate}
       />
     ))}
   </div>
