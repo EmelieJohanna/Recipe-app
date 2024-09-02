@@ -5,7 +5,7 @@ const RecipeCard = ({
   title,
   image,
   ingredients,
-  calories,
+
   onDelete,
   onEdit,
   onRate,
@@ -13,7 +13,6 @@ const RecipeCard = ({
   // State for managing editing
   const [isEditing, setIsEditing] = useState(false);
   const [editedTitle, setEditedTitle] = useState(title);
-  const [editedCalories, setEditedCalories] = useState(calories);
   const [editedIngredients, setEditedIngredients] = useState(
     ingredients.map((ingredient) => ingredient.text)
   );
@@ -34,7 +33,6 @@ const RecipeCard = ({
     const editedRecipe = {
       recipe: {
         label: editedTitle,
-        calories: editedCalories,
         image: image,
         ingredients: editedIngredients.map((text) => ({ text })),
       },
@@ -64,11 +62,7 @@ const RecipeCard = ({
             value={editedTitle}
             onChange={(e) => setEditedTitle(e.target.value)}
           />
-          <input
-            type="text"
-            value={editedCalories}
-            onChange={(e) => setEditedCalories(e.target.value)}
-          />
+
           <textarea
             value={editedIngredients.join(", ")}
             onChange={(e) => setEditedIngredients(e.target.value.split(", "))}
@@ -88,10 +82,9 @@ const RecipeCard = ({
               ))}
             </ul>
           </div>
-          <p className="recipe-card-calories">Calories : {calories}</p>
           <div className="recipe-card-footer">
             <div className="recipe-card-rating">
-              <p>Rating: {rating}</p>
+              <p>Rating: {rating}/5</p>
               {[1, 2, 3, 4, 5].map((star) => (
                 <button
                   key={star}

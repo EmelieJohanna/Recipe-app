@@ -144,3 +144,9 @@
 .delete-btn:hover {
   background-color: #d9363e;
 }
+
+/* editing */
+
+.recipe-card textarea {
+  height: 150px;
+}

@@ -84,7 +84,6 @@ function UserRecipeForm() {
           value={newRecipe.title}
           onChange={handleInputChange}
           placeholder="Recipe Title"
-          required
         />
 
         <textarea
@@ -93,7 +92,6 @@ function UserRecipeForm() {
           value={newRecipe.ingredients.join(", ")}
           onChange={handleIngredientsChange}
           placeholder="Ingredients"
-          required
         />
 
         <input
