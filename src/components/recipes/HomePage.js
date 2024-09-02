@@ -14,10 +14,14 @@ const HomePage = () => {
 
   // Handling input changes and form submission
   const handleSelectCategory = (filterType, value) => {
-    setFilters((prevFilters) => ({
+    setFilters((prevFilters) => {
+    const updatedFilters = {
       ...prevFilters,
       [filterType]: prevFilters[filterType] === value ? "" : value,
-    }));
+    };
+    console.log("Updated Filters:", updatedFilters); 
+    return updatedFilters;
+    });
   };
 
   const updateSearch = (e) => {

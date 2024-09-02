@@ -19,7 +19,6 @@ const App = () => {
       <Navbar onSelectView={handleSelectView} />
       {view === "home" && <HomePage />}
       {view === "userRecipe" && <UserRecipeForm />}
-      {/* {view === "mockData" && <FetchMockData />} */}
     </div>
   );
 };

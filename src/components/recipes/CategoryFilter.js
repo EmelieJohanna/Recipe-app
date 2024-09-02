@@ -5,10 +5,11 @@ import "./styles/CategoryFilter.css";
 const CategoryFilter = ({ onSelectCategory, filters }) => {
   const categories = {
     mealType: ["Breakfast", "Lunch", "Dinner", "Snack"],
-    dishType: ["Main Course", "Side Dish", "Dessert"],
+    dishType: ["Main course", "Side dish", "Desserts"],
     health: ["Gluten-Free", "Vegan", "Vegetarian"],
   };
   const handleSelect = (filterType, value) => {
+    console.log(`Filter Type: ${filterType}, Value: ${value}`);
     onSelectCategory(filterType, value);
   };
   return (
@@ -20,12 +21,10 @@ const CategoryFilter = ({ onSelectCategory, filters }) => {
             <button
               key={value}
               className={`filter-button ${
-                filters[filterType] === value.toLowerCase().replace(" ", "-")
-                  ? "active"
-                  : ""
+                filters[filterType] === value ? "active" : ""
               }`}
               onClick={() =>
-                handleSelect(filterType, value.toLowerCase().replace(" ", "-"))
+                handleSelect(filterType, value)
               }
             >
               {value}

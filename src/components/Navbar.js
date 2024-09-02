@@ -20,8 +20,6 @@ const Navbar = ({ onSelectView, onSelectCategory }) => {
     <nav className="navbar">
       <div className="navbar-left">
         <button onClick={() => onSelectView("home")}>All Recipes</button>
-        <button onClick={() => onSelectView("search")}>Gluten-Free</button>
-        <button onClick={() => onSelectView("search")}>Vegan</button>
       </div>
       <div className="navbar-title">
         <button onClick={() => onSelectView("home")}>
@@ -32,9 +30,6 @@ const Navbar = ({ onSelectView, onSelectCategory }) => {
         <button onClick={() => handleViewChange("userRecipe")}>
           Submit Recipe
         </button>
-        {/* <button onClick={() => handleViewChange("search")}>Recipe Search</button> */}
-        {/* <button onClick={() => onSelectView("mockData")}>Mock Data</button>{" "} */}
-        {/* New Tab */}
       </div>
       {onSelectCategory && (
         <div>
