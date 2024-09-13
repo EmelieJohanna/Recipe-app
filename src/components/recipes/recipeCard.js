@@ -5,7 +5,6 @@ const RecipeCard = ({
   title,
   image,
   ingredients,
-
   onDelete,
   onEdit,
   onRate,
@@ -23,9 +22,9 @@ const RecipeCard = ({
   // Handle rating
   const handleRate = (newRating) => {
     setRating(newRating);
-    if (onRate) {
-      onRate(title, newRating);
-    }
+    // if (onRate) {
+    //   onRate(title, newRating);
+    // }
   };
 
   // Handle save
@@ -82,6 +81,7 @@ const RecipeCard = ({
               ))}
             </ul>
           </div>
+
           <div className="recipe-card-footer">
             <div className="recipe-card-rating">
               <p>Rating: {rating}/5</p>

@@ -12,6 +12,8 @@ const HomePage = () => {
     health: "",
   }); // User-selected filters
 
+  const [useMockData, setUseMockData] = useState(false);
+
   // Handling input changes and form submission
   const handleSelectCategory = (filterType, value) => {
     setFilters((prevFilters) => ({
@@ -28,6 +30,10 @@ const HomePage = () => {
     e.preventDefault();
   };
 
+  const handleMockDataChange = () => {
+    setUseMockData((prev) => !prev);
+  };
+
   return (
     <div>
       <SearchForm
@@ -35,11 +41,17 @@ const HomePage = () => {
         updateSearch={updateSearch}
         getSearch={getSearch}
       />
+      <span>Use Mock Data for Recipes</span>
+      <input
+        type="checkbox"
+        checked={useMockData}
+        onChange={handleMockDataChange}
+      />
       <CategoryFilter
         filters={filters}
         onSelectCategory={handleSelectCategory}
       />
-      <FetchRecipes query={query} filters={filters} />
+      <FetchRecipes query={query} filters={filters} useMockData={useMockData} />
     </div>
   );
 };

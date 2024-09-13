@@ -75,7 +75,7 @@ const FetchRecipes = ({ query, filters, useMockData = false, onDelete }) => {
 
         // Combine and remove duplicates
         const allRecipes = [...updatedRecipes, ...uniqueLocalStorageRecipes];
-        const uniqueRecipes = removeComplexDuplicates(allRecipes);
+        const uniqueRecipes = removeDuplicates(allRecipes);
 
         //const allRecipes = [...updatedRecipes, ...localStorageRecipes.filter(recipe => !updatedRecipes.find(r => r.recipe.label === recipe.recipe.label))];
 
@@ -96,11 +96,7 @@ const FetchRecipes = ({ query, filters, useMockData = false, onDelete }) => {
     if (onDelete) onDelete(title);
   };
 
-  const handleRate = (title, newRating) => {
-    console.log(`Rated ${title} with ${newRating} stars`);
-  };
-
-  function removeComplexDuplicates(data) {
+  function removeDuplicates(data) {
     const unique = [];
     const identifiers = new Set();
 
@@ -125,9 +121,7 @@ const FetchRecipes = ({ query, filters, useMockData = false, onDelete }) => {
     return <div>Loading...</div>;
   }
 
-  return (
-    <RecipeList recipes={recipes} onDelete={handleDelete} onRate={handleRate} />
-  );
+  return <RecipeList recipes={recipes} onDelete={handleDelete} />;
 };
 
 export default FetchRecipes;
