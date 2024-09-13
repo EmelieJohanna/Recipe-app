@@ -105,6 +105,7 @@
 
 .recipe-card-rating {
   margin: 10px 0;
+  font-weight: bolder;
 }
 
 .star {
@@ -149,4 +150,20 @@
 
 .recipe-card textarea {
   height: 150px;
+}
+
+.edit-btn {
+  background-color: #cb8010d5;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  padding: 4px 8px;
+  font-size: 12px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  margin-right: 5px;
+}
+
+.edit-btn:hover {
+  background-color: #d9363e;
 }

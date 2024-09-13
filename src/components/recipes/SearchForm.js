@@ -2,6 +2,8 @@
 import React from "react";
 import "./styles/SearchForm.css";
 
+// Componenet that handles search functionality
+
 const SearchForm = ({ query, updateSearch, getSearch }) => (
   <form className="search-form" onSubmit={getSearch}>
     <input
